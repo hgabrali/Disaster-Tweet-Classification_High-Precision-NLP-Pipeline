@@ -7,7 +7,7 @@ This repository implements an end-to-end **State-of-the-Art (SOTA)** NLP pipelin
 ## 🏗 Project Roadmap & Architecture
 
 ### Phase 1: Data Acquisition & Discovery
-* **Ingestion**: The core dataset comprises approximately 7,600 labeled tweets. In a production environment, the architecture is designed to ingest data via the **Twitter/X API v2** into a **BigQuery** or **AWS S3** data lake.
+* **Ingestion**: The core [dataset](https://www.kaggle.com/c/nlp-getting-started/overview) comprises approximately 7,600 labeled tweets. In a production environment, the architecture is designed to ingest data via the **Twitter/X API v2** into a **BigQuery** or **AWS S3** data lake.
 * **Exploratory Data Analysis (EDA)**: Initial analysis reveals a class distribution of **57% (Non-Disaster)** versus **43% (Disaster)**. Text lengths peak at 130–140 characters, consistent with microblogging constraints.
 * **Ground Truth**: To mitigate label noise, we implement **Multi-Annotator Agreement (Cohen’s Kappa)** to ensure that "Gold Standard" labels remain consistent even across highly ambiguous samples.
 
