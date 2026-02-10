@@ -32,6 +32,30 @@ The classification engine ingests data structured across three primary dimension
 ### **💡 Engineering Note on Missing Data**
 As both the **Keyword** and **Location** fields may be blank, the preprocessing architecture must include robust imputation or handling strategies for null values to ensure model stability during the feature concatenation phase.
 
+---
+
+## 📋 Dataset Schema & Field Descriptions
+
+The classification engine utilizes a structured dataset comprising five primary dimensions to analyze and categorize tweet sentiment relative to real-world disasters.
+
+---
+
+### **Data Dictionary**
+
+| Column | Data Type | Technical Description & Significance |
+| :--- | :--- | :--- |
+| **id** | Integer | A unique identifier assigned to each individual tweet within the corpus. |
+| **text** | String | The raw textual content of the tweet, serving as the primary input for the NLP preprocessing pipeline. |
+| **location** | String | The geographic origin of the tweet; this field may be null/blank. |
+| **keyword** | String | A specific metadata tag extracted from the tweet; this field may be null/blank. |
+| **target** | Binary | **(train.csv only)** The ground truth label where `1` denotes a confirmed real disaster and `0` denotes metaphorical or non-disaster language. |
+
+---
+
+
+
+### **🛠 Technical Implementation Note**
+During the **Feature Engineering** phase, the `target` column is used as the dependent variable for supervised learning. The `location` and `keyword` fields, while potentially sparse, can be leveraged through categorical embedding layers to provide additional context to the `text` vectorization.
 
 
 
