@@ -54,3 +54,6 @@ Submissions will be evaluated based on the depth of understanding and the approp
 | **Communication** | Clear, structured, and insightful delivery of findings. |
 
 ---
+
+<img width="885" height="322" alt="image" src="https://github.com/user-attachments/assets/24273521-16fe-4473-a6bc-ee1c5058cd79" />
+
