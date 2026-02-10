@@ -1,0 +1,2 @@
+# Disaster-Tweet-Classification_High-Precision-NLP-Pipeline
+This repository implements an end-to-end State-of-the-Art (SOTA) NLP pipeline to classify whether a tweet describes a real-world disaster or uses hyperbolic language metaphorically. This project addresses the challenge of semantic ambiguity (e.g., "This song is fire" vs. "The forest is on fire") through a robust 6-phase engineering roadmap
