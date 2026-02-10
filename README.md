@@ -11,6 +11,30 @@ This repository implements an end-to-end **State-of-the-Art (SOTA)** NLP pipelin
 * **Exploratory Data Analysis (EDA)**: Initial analysis reveals a class distribution of **57% (Non-Disaster)** versus **43% (Disaster)**. Text lengths peak at 130–140 characters, consistent with microblogging constraints.
 * **Ground Truth**: To mitigate label noise, we implement **Multi-Annotator Agreement (Cohen’s Kappa)** to ensure that "Gold Standard" labels remain consistent even across highly ambiguous samples.
 
+## 📊 Dataset Field Specifications
+
+The classification engine ingests data structured across three primary dimensions to distinguish real-world disasters from metaphorical language.
+
+---
+
+### **Core Data Fields**
+
+| Field | Description | Technical Significance |
+| :--- | :--- | :--- |
+| **Tweet Text** | The primary textual content of the post. | Serves as the raw input for the NLP preprocessing pipeline and contextual embedding generation. |
+| **Keyword** | A specific metadata tag extracted from the tweet; this field may be null. | Acts as a categorical feature that can be utilized in Multi-Modal architectures to boost classification precision. |
+| **Location** | The geographic origin from which the tweet was transmitted; this field may be null. | Provides spatial context, which is critical for identifying localized disaster events. |
+
+---
+
+
+
+### **💡 Engineering Note on Missing Data**
+As both the **Keyword** and **Location** fields may be blank, the preprocessing architecture must include robust imputation or handling strategies for null values to ensure model stability during the feature concatenation phase.
+
+
+
+
 ### Phase 2: Text Preprocessing & Normalization
 To maximize model stability, we minimize linguistic noise through a custom normalization pipeline:
 * **Regex Cleaning**: Systematic stripping of URLs, HTML entities, and user handles.
