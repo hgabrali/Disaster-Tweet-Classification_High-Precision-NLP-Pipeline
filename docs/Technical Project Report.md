@@ -19,6 +19,7 @@ The pipeline implements a **"Clean-for-BERT"** strategy, which is more surgical 
 
 <img width="292" height="173" alt="image" src="https://github.com/user-attachments/assets/43e7875d-47ef-45ee-9b67-5e698e7a4a72" />
 
+<img width="1320" height="501" alt="image" src="https://github.com/user-attachments/assets/4ab84578-c00b-4d90-9757-71c9893768a9" />
 
 
 ### 🛡️ Leakage Prevention
