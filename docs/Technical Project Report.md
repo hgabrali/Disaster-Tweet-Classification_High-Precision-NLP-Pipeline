@@ -1,5 +1,8 @@
 # Technical Project Report: Disaster Tweet Classification
 
+<img width="1170" height="638" alt="image" src="https://github.com/user-attachments/assets/d74a375f-5a29-4ecf-b11e-92164a28c6cf" />
+
+
 ## 📋 Project Overview
 **Project Title:** High-Precision NLP Pipeline for Real-Time Crisis Identification  
 **Frameworks:** `PyTorch`, `HuggingFace Transformers`, `Scikit-Learn`
