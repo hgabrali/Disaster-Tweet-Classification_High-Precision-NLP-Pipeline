@@ -17,6 +17,10 @@ The primary goal of this initiative is to distinguish between tweets describing 
 ## 2. 🏗️ Data Architecture & Preprocessing (Scrubbing)
 The pipeline implements a **"Clean-for-BERT"** strategy, which is more surgical than traditional stop-word removal.
 
+<img width="292" height="173" alt="image" src="https://github.com/user-attachments/assets/43e7875d-47ef-45ee-9b67-5e698e7a4a72" />
+
+<img width="1321" height="498" alt="image" src="https://github.com/user-attachments/assets/5b7b23d9-88da-450e-aa95-2d5f3859eb22" />
+
 ### 🛡️ Leakage Prevention
 A **stratified split** (10% Hold-out, 90% Development) was implemented before applying transformations. This ensures the TF-IDF vectorizer and Transformer tokenizer do not see the test distribution during training, maintaining the integrity of the evaluation.
 
@@ -32,6 +36,9 @@ A **stratified split** (10% Hold-out, 90% Development) was implemented before ap
 ### Model A: TF-IDF + Logistic Regression (The Baseline)
 A classical statistical approach using term frequency-inverse document frequency.
 
+<img width="455" height="255" alt="image" src="https://github.com/user-attachments/assets/43f6bb9f-30ee-4e3e-a2ae-1f3423250b40" />
+
+
 | Pros | Cons |
 | :--- | :--- |
 | **High Interpretability:** Easy to extract feature importance (which words signify a disaster). | **No Contextual Awareness:** Treats "Fire" in "Fire in the building" the same as "Fire track on Spotify." |
@@ -39,6 +46,9 @@ A classical statistical approach using term frequency-inverse document frequency
 
 ### Model B: DeBERTa-v3-Small (Advanced Transformer)
 A modern Transformer architecture using "Decoding-enhanced BERT with disentangled attention."
+
+<img width="428" height="200" alt="image" src="https://github.com/user-attachments/assets/e939197b-e1b3-4260-9fd7-4d6ab0953fb5" />
+
 
 | Pros | Cons |
 | :--- | :--- |
@@ -50,6 +60,9 @@ A modern Transformer architecture using "Decoding-enhanced BERT with disentangle
 ## 4. 📊 Evaluation & Performance Summary
 The transition from Baseline to DeBERTa represents a significant jump in the ROC-AUC and F1-Score.
 
+<img width="1725" height="648" alt="image" src="https://github.com/user-attachments/assets/81dd6b3c-24cc-4f85-b4c7-7156b830dcd5" />
+
+
 ### Comparative Performance Matrix
 | Metric | Baseline (LogReg) | Advanced (DeBERTa-v3) | Delta (Δ) |
 | :--- | :--- | :--- | :--- |
@@ -57,8 +70,18 @@ The transition from Baseline to DeBERTa represents a significant jump in the ROC
 | **F1-Score** | Baseline Value | Model Value | +Improvement |
 | **AUC** | Baseline Value | Model Value | +Improvement |
 
+
+
+
+
 ### 🔍 Error Analysis (Interpretation)
 The model's failure points (Misclassified Examples) often stem from:
+
+<img width="651" height="480" alt="image" src="https://github.com/user-attachments/assets/9e1802c9-0463-4dbe-b9c5-f3202342a574" />
+
+
+<img width="832" height="471" alt="image" src="https://github.com/user-attachments/assets/86460053-6d16-4674-b12c-a55bbd160502" />
+
 1.  **Sarcasm/Irony:** Tweets that use disaster terminology in a joking context.
 2.  **Ambiguous Keywords:** Words like "Ablaze" or "Siren" used in song lyrics vs. actual emergencies.
 
