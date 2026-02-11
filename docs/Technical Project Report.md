@@ -19,7 +19,7 @@ The pipeline implements a **"Clean-for-BERT"** strategy, which is more surgical 
 
 <img width="292" height="173" alt="image" src="https://github.com/user-attachments/assets/43e7875d-47ef-45ee-9b67-5e698e7a4a72" />
 
-<img width="1321" height="498" alt="image" src="https://github.com/user-attachments/assets/5b7b23d9-88da-450e-aa95-2d5f3859eb22" />
+
 
 ### 🛡️ Leakage Prevention
 A **stratified split** (10% Hold-out, 90% Development) was implemented before applying transformations. This ensures the TF-IDF vectorizer and Transformer tokenizer do not see the test distribution during training, maintaining the integrity of the evaluation.
