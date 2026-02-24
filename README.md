@@ -62,3 +62,57 @@ The evaluation confirms the superiority of the Transformer architecture in resol
 * **Engineering:** Regex, `DataCollatorWithPadding`
 
 ---
+
+# Model Performance Benchmarking & Critical Failure Analysis
+
+---
+
+## 📖 Executive Summary
+This project evaluates the trade-offs between a high-speed statistical baseline and a state-of-the-art Transformer architecture. While the theoretical framework favors deep semantic understanding, the empirical results highlight critical challenges in fine-tuning large language models (LLMs) on noisy microblogging data.
+
+---
+
+## 1. 📊 Comparative Metrics Overview
+The following table summarizes the performance of both models on the stratified validation set, which represents **9%** of the total **7,613** entries:
+
+| Metric | Baseline (TF-IDF + LogReg) | Challenger (DeBERTa-v3-Small) | Delta (Δ) |
+| :--- | :--- | :--- | :--- |
+| **Accuracy** | 0.8207 | 0.5700 | -25.07% |
+| **F1-Score** | 0.7784 | 0.0000 | -77.84% |
+| **ROC-AUC** | 0.8716 | 0.5000 | -37.16% |
+
+> [!NOTE]
+> 🖼️ `
+
+[Image of Model Comparison Chart]
+`
+
+---
+
+## 2. 🧪 The "Baseline vs. Transformer" Paradox
+The report suggests a "significant jump" in performance through Transformer dominance. However, the current iteration shows a complete collapse of the DeBERTa model's predictive power.
+
+* **🚨 Majority Class Bias:** With an Accuracy of **0.57** and an F1-Score of **0.00**, the DeBERTa model fell into a "Zero-Rule" trap. It predicted the majority class ("Normal") for 100% of the samples, failing to identify a single disaster event (0% Recall for the Disaster class).
+* **📉 Logit Instability:** Technical inspection reveals the presence of **NaN/Inf** values in the model's logits during inference. This indicates Gradient Explosion or numerical instability during the fine-tuning process, resulting in a random-chance ROC-AUC of **0.50**.
+* **✅ Baseline Robustness:** In contrast, the TF-IDF + Logistic Regression pipeline demonstrated remarkable resilience, achieving an **82%** accuracy with nearly instantaneous inference. This highlights that for short-form, high-noise data, simple statistical counts can outperform unoptimized deep learning models.
+
+---
+
+## 3. 🛠️ Root Cause Analysis (Technical Post-Mortem)
+The failure of the DeBERTa-v3 model to converge can be attributed to several engineering factors:
+
+* **📍 Learning Rate Mismatch:** The utilized learning rate of $2 \times 10^{-5}$ may have been too aggressive for this specific dataset size, preventing the model from escaping a local minimum.
+* **⚖️ Weight Decay & Regularization:** While a weight decay of **0.01** was applied, it was insufficient to stabilize the training against the noise inherent in Twitter's colloquialisms and URLs.
+* **🧠 Disentangled Attention Overhead:** While theoretically superior at capturing word positions, the complexity of DeBERTa's architecture requires more precise hyperparameter tuning compared to standard BERT.
+
+---
+
+## 4. 🚀 Strategic Remediation Steps
+To bridge the gap between theoretical potential and empirical performance, the following optimizations are planned:
+
+1.  **⚙️ Automated Tuning:** Deploying **Optuna** to find the optimal learning rate and scheduler type.
+2.  **✂️ Gradient Clipping:** Implementing strict gradient clipping ($1.0$) to prevent logit overflows.
+3.  **⚖️ Class Imbalance Handling:** Utilizing **Back-Translation** to augment the 'Disaster' class, providing the model with more signal to learn the minority class.
+
+---
+🖼️ ``
